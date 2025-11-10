@@ -1,0 +1,94 @@
+.swagger-ui .topbar {
+    background-color: #757F9A;
+    margin: 0;
+    color: #5D4157;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.4), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    padding: 8px 30px;
+}
+
+body {
+    margin: 0;
+    background: #757F9A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.swagger-ui .scheme-container {
+    margin: 0 0 20px;
+    padding: 30px 0;
+    background: #757F9A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    box-shadow: 0 1px 2px 0 #D7DDE8;
+}
+.swagger-ui .opblock.opblock-get .opblock-summary {
+    border-color: transparent;
+}
+
+.swagger-ui .opblock .opblock-section-header, .swagger-ui .opblock .opblock-section-header label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: transparent;
+}
+.swagger-ui a.nostyle, .swagger-ui a.nostyle:visited {
+    color: #5D4157;
+    cursor: pointer;
+    background: transparent;
+}
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: transparent;
+    color: #0f6ab4;
+    border: solid 1px #0f6ab4;
+}
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+    background: transparent;
+    color: #215f00;
+    border: solid 1px #215f00;
+}
+.swagger-ui .opblock.opblock-post {
+    border-color: #215f00;
+    background: rgba(241, 241, 241, .1);
+}
+.swagger-ui .opblock.opblock-post .opblock-summary {
+    border-color: transparent;
+}
+.swagger-ui .topbar .download-url-wrapper .download-url-button {
+    background: #D7DDE8;
+    color: #5D4157;
+}
+
+span {
+    color:#5D4157;
+}
+
+.swagger-ui .topbar .download-url-wrapper input[type="text"] {
+    border: unset;
+}
+
+
+.swagger-ui .btn.authorize {
+    background-color: transparent;
+    display: inline;
+    line-height: 1;
+    color: #5D4157;
+    border-color: #5D4157;
+}
+
+.swagger-ui .btn.authorize svg {
+    fill: #5D4157;
+}
+
+.swagger-ui .model-box-control:focus, .swagger-ui .models-control:focus, .swagger-ui .opblock-summary-control:focus {
+    outline: none;
+}
+
+
+.modal-ux-inner {
+    background-color:floralwhite;
+
+}
