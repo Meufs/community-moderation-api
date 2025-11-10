@@ -3,7 +3,7 @@ package snb.projects.domain.ports.out
 import java.sql.Timestamp
 
 
-interface UpdateClientsOut {
+interface UpdateMeufsOut {
     fun updateProfilePicture(mail: String, profilePictureUrl: String)
     fun approveAccount(mail: String)
     fun changeOtpCode(mail: String, newOtp: String, newOtpTimestamp: Timestamp)

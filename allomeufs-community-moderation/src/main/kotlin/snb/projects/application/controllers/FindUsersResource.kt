@@ -26,7 +26,7 @@ class FindUsersResource {
     @Path("/me")
     @Consumes(MediaType.APPLICATION_JSON)
     @ResponseStatus(CREATED)
-    @RolesAllowed("CLIENT")
+    @RolesAllowed("MEUF","MODO")
     @SecurityRequirement(name = "bearer")
     fun getMe() {
         val userMail = jwt.name

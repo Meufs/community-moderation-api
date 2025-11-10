@@ -46,12 +46,12 @@ class CreateUsersResource {
     private lateinit var csrfCookieName: String
 
     @POST
-    @Path("/clients")
+    @Path("/meufs")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ResponseStatus(CREATED)
     @PermitAll
-    @Operation(summary = "Create a client", description = "Create a client")
+    @Operation(summary = "Create a meuf", description = "Create a meuf")
     @APIResponses(
         APIResponse(responseCode = "200", description = "OK", content = [Content(mediaType = "application/json",
             schema = Schema(implementation = CreateUserResponse::class)

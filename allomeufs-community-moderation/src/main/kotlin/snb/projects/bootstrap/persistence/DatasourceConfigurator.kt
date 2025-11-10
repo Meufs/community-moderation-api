@@ -55,6 +55,8 @@ class DatasourceConfigurator(
         val url =
             secretClient.getSecret("DB-ENDPOINT").value + "/" + secretClient.getSecret(
                 "DB-NAME"
+            ).value + "?currentSchema="  + secretClient.getSecret(
+                "DB-NAME"
             ).value
         Log.debug("Secrets successfully retrieved")
         val dataSourceConfiguration = AgroalDataSourceConfigurationSupplier()

@@ -4,7 +4,7 @@ import com.templates.domain.errors.ApplicationException
 import com.templates.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.ports.`in`.VerifyAccountsIn
 import snb.projects.domain.ports.out.FindClientsOut
-import snb.projects.domain.ports.out.UpdateClientsOut
+import snb.projects.domain.ports.out.UpdateMeufsOut
 import snb.projects.domain.services.PasswordUtils.hashWithBCrypt
 import snb.projects.domain.services.PasswordUtils.verifyPassword
 import com.templates.domain.utils.InputsValidator.hasTimestampExceededTwentyMinutes
@@ -21,7 +21,7 @@ class VerifyAccounts: VerifyAccountsIn {
     private lateinit var findClientsOut: FindClientsOut
 
     @Inject
-    private lateinit var updateClientsOut: UpdateClientsOut
+    private lateinit var updateMeufsOut: UpdateMeufsOut
 
     @Inject
     private lateinit var mailer: Mailer
@@ -32,7 +32,7 @@ class VerifyAccounts: VerifyAccountsIn {
         val otpTimestamp = user.verificationCodeTimestamp!!
         if(verifyPassword(otp, user.verificationCode!!)){
             hasTimestampExceededTwentyMinutes(otpTimestamp, Timestamp.from(Instant.now()))
-            updateClientsOut.approveAccount(mail)
+            updateMeufsOut.approveAccount(mail)
         } else {
             throw  ApplicationException(ApplicationExceptionsEnum.OTP_CODES_NO_MATCH)
         }
@@ -44,7 +44,7 @@ class VerifyAccounts: VerifyAccountsIn {
         val newTimestamp = Timestamp.from(Instant.now())
         val content = mailer.newOtpEmail(newCode)
         mailer.sendHtmlEmail(mail, "Mise à jour du code OTP", content)
-        updateClientsOut.changeOtpCode(mail, hashedOtp, newTimestamp)
+        updateMeufsOut.changeOtpCode(mail, hashedOtp, newTimestamp)
     }
 
 }

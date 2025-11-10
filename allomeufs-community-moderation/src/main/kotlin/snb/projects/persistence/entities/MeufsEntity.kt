@@ -5,6 +5,6 @@ import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
 
 @Entity
-@DiscriminatorValue("ADMIN")
-class AdminsEntity: UsersEntity() {
+@DiscriminatorValue("MEUF")
+class MeufsEntity: UsersEntity() {
 }

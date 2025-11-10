@@ -39,10 +39,10 @@ class AccountVerificationResource {
     private lateinit var csrfCookieName: String
 
     @PUT
-    @Path("/client")
+    @Path("/meuf")
     @Consumes(MediaType.APPLICATION_JSON)
     @ResponseStatus(NO_CONTENT)
-    @RolesAllowed("CLIENT")
+    @RolesAllowed("MEUF")
     fun verifyClientAccount(otpRequest: OtpRequest):Response {
         Log.info("Vérifying user account")
         val mail = jwt.name
@@ -56,7 +56,7 @@ class AccountVerificationResource {
     @Path("/new-otp")
     @Consumes(MediaType.APPLICATION_JSON)
     @ResponseStatus(NO_CONTENT)
-    @RolesAllowed("CLIENT")
+    @RolesAllowed("MEUF","MODO")
     fun generateNewOtpCode():Response {
         Log.info("Initiating new OTP")
 

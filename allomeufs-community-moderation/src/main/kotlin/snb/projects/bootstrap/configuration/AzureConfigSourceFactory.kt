@@ -14,7 +14,9 @@ class AzureConfigSourceFactory : ConfigSourceFactory {
 		private const val CLAIMS: String = "claims.origin"
 		private const val ISSUER: String = "mp.jwt.verify.issuer"
 		private const val ADMIN_CODE: String = "admin.code"
-
+        private const val DB_URL: String = "quarkus.datasource.jdbc.url"
+        private const val DB_USER: String = "quarkus.datasource.username"
+        private const val DB_PASSWORD: String = "quarkus.datasource.password"
 	}
 
 	override fun getConfigSources(context: ConfigSourceContext): Iterable<ConfigSource> {
@@ -43,8 +45,12 @@ class AzureConfigSourceFactory : ConfigSourceFactory {
 				conf[CLAIMS] = secretClient.getSecret("CLAIMS-ORIGIN").value
 				conf[ISSUER] = secretClient.getSecret("TOKEN-ISSUER").value
 				conf[ADMIN_CODE] = secretClient.getSecret("ADMIN-REGISTRATION-CODE").value
+                conf[DB_URL] = "jdbc:postgresql://" + secretClient.getSecret("DB-ENDPOINT").value +"/" +secretClient
+                    .getSecret("DB-NAME").value
+                conf[DB_USER] = secretClient.getSecret("DB-USER").value
+                conf[DB_PASSWORD] = secretClient.getSecret("DB-PASSWORD").value
 			}
-
+            FlywayRunner.migrate(conf[DB_URL], conf[DB_USER], conf[DB_PASSWORD])
 			return listOf(PropertiesConfigSource(conf, null, priority))
 		}
 

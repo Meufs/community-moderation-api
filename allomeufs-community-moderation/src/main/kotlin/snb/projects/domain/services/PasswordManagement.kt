@@ -2,7 +2,7 @@ package snb.projects.domain.services
 
 import snb.projects.domain.ports.`in`.PasswordManagementIn
 import snb.projects.domain.ports.out.FindClientsOut
-import snb.projects.domain.ports.out.UpdateClientsOut
+import snb.projects.domain.ports.out.UpdateMeufsOut
 import snb.projects.domain.services.PasswordUtils.hashWithBCrypt
 import snb.projects.domain.utils.AdminCodeGenerator.generateAdminCode
 import com.templates.domain.utils.InputsValidator.hasTimestampExceededTwentyMinutes
@@ -22,7 +22,7 @@ class PasswordManagement : PasswordManagementIn {
     private lateinit var mailer: Mailer
 
     @Inject
-    private lateinit var updateClientsOut: UpdateClientsOut
+    private lateinit var updateMeufsOut: UpdateMeufsOut
 
     @Inject
     private lateinit var findClientsOut: FindClientsOut
@@ -36,7 +36,7 @@ class PasswordManagement : PasswordManagementIn {
         val safeToken = hashWithBCrypt(token).result
         val tokenTimestamp = Timestamp.from(Instant.now())
         mailer.sendHtmlEmail(mail, "Récupération de mot de passe", mailContent)
-        updateClientsOut.initPasswordRecovery(mail, safeToken, tokenTimestamp)
+        updateMeufsOut.initPasswordRecovery(mail, safeToken, tokenTimestamp)
     }
 
     override fun recoverPassword( mail:String,token: String, password: String, passwordConfirmation: String) {
@@ -48,7 +48,7 @@ class PasswordManagement : PasswordManagementIn {
         validatePasswordHash(token, hashedToken)
         hasTimestampExceededTwentyMinutes(currentTimestamp, Timestamp.from(Instant.now()))
         val hashedPw = hashWithBCrypt(password).result
-        updateClientsOut.changePassword(user.mail, hashedPw)
+        updateMeufsOut.changePassword(user.mail, hashedPw)
     }
 
 
@@ -56,7 +56,7 @@ class PasswordManagement : PasswordManagementIn {
         validatePasswordFormat(password)
         validatePasswordConfirmation(password, passwordConfirmation)
         val hashedPw = hashWithBCrypt(password).result
-        updateClientsOut.changePassword(mail, hashedPw)
+        updateMeufsOut.changePassword(mail, hashedPw)
     }
 
 

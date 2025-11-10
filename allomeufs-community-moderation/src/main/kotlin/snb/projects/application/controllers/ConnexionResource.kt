@@ -64,7 +64,7 @@ class ConnexionResource {
 
     @POST
     @Path("/logout")
-    @RolesAllowed("CLIENT","ADMIN")
+    @RolesAllowed("MEUF","ADMIN","MODO")
     fun logout(): Response {
         val cookie = cookieUtils.setUpCookie("Bearer", "")
         return Response.ok("Logged out").cookie(cookie).build()

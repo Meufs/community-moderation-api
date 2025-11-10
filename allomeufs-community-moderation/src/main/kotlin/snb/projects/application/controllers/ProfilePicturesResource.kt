@@ -48,7 +48,7 @@ class ProfilePicturesResource {
     @Path("/{phoneNumber}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @ResponseStatus(ACCEPTED)
-    @RolesAllowed("CLIENT","ADMIN")
+    @RolesAllowed("MEUF","ADMIN","MODO")
     @SecurityRequirement(name = "bearer")
     @Operation(summary = "Update user profile picture", description = "Modifies the user profile picture, update the " +
             "link in db, returns the new url")

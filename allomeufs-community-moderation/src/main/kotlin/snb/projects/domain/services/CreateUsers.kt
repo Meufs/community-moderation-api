@@ -39,7 +39,7 @@ class CreateUsers : CreateUsersIn {
 
     override fun createUser(user: CreateUserCommand): UserBasicInformations {
         Log.info("Creating user")
-        val userType = UserTypes.CLIENT.name
+        val userType = UserTypes.MEUF.name
         val userReference = setUpUserDataAndCheckInputs(user, userType)
         val userToken = jwtTokenGenerator.getToken(user.mail,userType)
         createUsersOut.addClient(user)
@@ -82,7 +82,7 @@ class CreateUsers : CreateUsersIn {
 
         user.type = userType
         user.reference = userReference
-        if(user.type == UserTypes.CLIENT.name){
+        if(user.type == UserTypes.MEUF.name){
             mailer.sendHtmlEmail(user.mail, "Vérification de compte", content)
         }
 

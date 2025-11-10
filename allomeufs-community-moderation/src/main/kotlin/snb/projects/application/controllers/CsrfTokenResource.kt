@@ -23,7 +23,7 @@ class CsrfTokenResource {
     private lateinit var cookieUtils: CookieUtils
     @GET
     @ResponseStatus(ACCEPTED)
-    @RolesAllowed("CLIENT","ADMIN")
+    @RolesAllowed("MEUF","ADMIN","MODO")
     @SecurityRequirement(name = "bearer")
     fun getCsrfToken( ): Response {
         val userMail = jwt.name

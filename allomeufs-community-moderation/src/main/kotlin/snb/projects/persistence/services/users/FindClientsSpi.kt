@@ -2,7 +2,7 @@ package snb.projects.persistence.services.users
 
 import com.templates.domain.errors.ApplicationException
 import com.templates.domain.errors.ApplicationExceptionsEnum
-import com.templates.persistence.entities.ClientsEntity
+import snb.projects.persistence.entities.MeufsEntity
 import snb.projects.persistence.repositories.ClientsRepository
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
@@ -27,6 +27,6 @@ class FindClientsSpi: FindClientsOut {
 
     override fun findByPasswordVerificationCode(passwordVerificationCode: String): User {
         return usersEntityMapper.fromClientToUser(clientsRepository.find("passwordVerificationCode", passwordVerificationCode)
-            .firstResult<ClientsEntity>())
+            .firstResult<MeufsEntity>())
     }
 }

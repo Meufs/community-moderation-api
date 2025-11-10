@@ -10,10 +10,9 @@ import com.templates.domain.errors.ApplicationException
 import com.templates.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.ports.`in`.AzureStorageIn
 import snb.projects.domain.ports.out.UpdateAdminsOut
-import snb.projects.domain.ports.out.UpdateClientsOut
+import snb.projects.domain.ports.out.UpdateMeufsOut
 import jakarta.annotation.PostConstruct
 import jakarta.enterprise.context.ApplicationScoped
-import jakarta.enterprise.inject.Default
 import jakarta.inject.Inject
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.jboss.resteasy.reactive.multipart.FileUpload
@@ -40,7 +39,7 @@ class AzureStorage : AzureStorageIn {
     private lateinit var endpoint: String
 
     @Inject
-    private lateinit var updateClientsOut: UpdateClientsOut
+    private lateinit var updateMeufsOut: UpdateMeufsOut
 
     @Inject
     private lateinit var updateAdminsOut: UpdateAdminsOut
@@ -73,8 +72,8 @@ class AzureStorage : AzureStorageIn {
                 file.filePath().toString()
             )
             val profilePictureUrl = client.blobUrl
-            if(role == "CLIENT"){
-                updateClientsOut.updateProfilePicture(mail, profilePictureUrl)
+            if(role == "MEUF" || role == "MODO"){
+                updateMeufsOut.updateProfilePicture(mail, profilePictureUrl)
             } else {
                 updateAdminsOut.updateProfilePicture(mail, profilePictureUrl)
             }

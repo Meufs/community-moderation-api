@@ -7,13 +7,13 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
 import jakarta.transaction.Transactional
 import io.quarkus.logging.Log;
-import snb.projects.domain.ports.out.UpdateClientsOut
+import snb.projects.domain.ports.out.UpdateMeufsOut
 import java.sql.SQLException
 import java.sql.Timestamp
 
 @ApplicationScoped
 @Transactional
-class UpdateClientsSpi: UpdateClientsOut {
+class UpdateMeufsSpi: UpdateMeufsOut {
 
     @Inject
     private lateinit var clientsRepository: ClientsRepository
