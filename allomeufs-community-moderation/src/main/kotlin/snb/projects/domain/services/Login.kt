@@ -1,7 +1,7 @@
 package snb.projects.domain.services
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.mappers.UsersMappers
 import snb.projects.domain.models.users.UserCreated
 import snb.projects.domain.ports.`in`.LoginIn

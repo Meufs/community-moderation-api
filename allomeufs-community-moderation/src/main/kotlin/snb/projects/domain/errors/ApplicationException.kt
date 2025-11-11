@@ -1,5 +1,7 @@
 package com.templates.domain.errors
 
+import snb.projects.domain.errors.ApplicationExceptionsEnum
+
 
 class ApplicationException(exceptionEnum: ApplicationExceptionsEnum) : RuntimeException() {
     val statusCode: Int = exceptionEnum.errorCode

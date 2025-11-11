@@ -7,7 +7,7 @@ import com.azure.communication.email.models.EmailSendResult
 import com.azure.core.util.polling.PollResponse
 import com.azure.core.util.polling.SyncPoller
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import io.quarkus.qute.Location
 import io.quarkus.qute.Template
 import jakarta.enterprise.context.ApplicationScoped

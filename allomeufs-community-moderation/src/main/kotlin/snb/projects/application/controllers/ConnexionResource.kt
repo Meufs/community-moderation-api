@@ -2,7 +2,6 @@ package snb.projects.application.controllers
 
 import snb.projects.application.dto.requests.LoginRequest
 import snb.projects.application.dto.responses.UserLoginResponse
-import snb.projects.application.mappers.UsersDtoMappers
 import io.quarkus.logging.Log
 import jakarta.annotation.security.PermitAll
 import jakarta.annotation.security.RolesAllowed
@@ -22,6 +21,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses
 import org.jboss.resteasy.reactive.ResponseStatus
 import org.jboss.resteasy.reactive.RestResponse.StatusCode.OK
+import snb.projects.application.mappers.UsersDtoMappers
 import snb.projects.domain.ports.`in`.CsrfTokenGeneratorIn
 import snb.projects.domain.ports.`in`.LoginIn
 
@@ -53,7 +53,7 @@ class ConnexionResource {
         )]),
     )
     fun login(loginRequest: LoginRequest): Response {
-        Log.debug(String.format("Logging user %s", loginRequest.identifier))
+        Log.info(String.format("Logging user %s", loginRequest.identifier))
 
         val loggedIn = loginIn.login(loginRequest.identifier, loginRequest.password)
         val bearerCookie = cookieUtils.setUpCookie("Bearer", loggedIn.jwToken)

@@ -1,7 +1,6 @@
-package com.templates.domain.errors
+package snb.projects.domain.errors
 
 import org.jboss.resteasy.reactive.RestResponse.StatusCode
-import snb.projects.domain.errors.ErrorOriginEnum
 
 enum class ApplicationExceptionsEnum(val message: String,val errorCode: Int,val origin: String) {
     ERROR("An error occurred", StatusCode.BAD_REQUEST, ErrorOriginEnum.BOOTSTRAP.name),

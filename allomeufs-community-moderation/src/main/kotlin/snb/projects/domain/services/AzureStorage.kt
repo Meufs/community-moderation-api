@@ -7,7 +7,7 @@ import com.azure.storage.blob.BlobServiceClient
 import com.azure.storage.blob.BlobServiceClientBuilder
 import com.azure.storage.blob.models.PublicAccessType
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.ports.`in`.AzureStorageIn
 import snb.projects.domain.ports.out.UpdateAdminsOut
 import snb.projects.domain.ports.out.UpdateMeufsOut
@@ -22,7 +22,7 @@ import io.quarkus.logging.Log;
 @ApplicationScoped
 class AzureStorage : AzureStorageIn {
     companion object {
-        const val FORMATTER: String = "user-%s"
+        const val FORMATTER: String = "user-%s-storage"
     }
 
 
@@ -80,7 +80,7 @@ class AzureStorage : AzureStorageIn {
             Log.info("Profile picture updated : $profilePictureUrl")
             return profilePictureUrl
         } catch (e: Exception) {
-            Log.debug(e.toString())
+            Log.info(e.toString())
             throw ApplicationException(ApplicationExceptionsEnum.ERROR)
         }
     }
@@ -91,9 +91,9 @@ class AzureStorage : AzureStorageIn {
             blobServiceClient!!.createBlobContainer(containerName)
             val blobServiceCLient = blobServiceClient!!.getBlobContainerClient(containerName)
             blobServiceCLient.setAccessPolicy(PublicAccessType.BLOB, null)
-            Log.debug("Container created for user with phone number $phoneNumber")
+            Log.info("Container created for user with phone number $phoneNumber")
         } catch (e: Exception) {
-            Log.debug(e.message)
+            Log.info(e.toString())
             throw ApplicationException(ApplicationExceptionsEnum.ERROR)
         }
     }

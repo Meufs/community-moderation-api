@@ -1,7 +1,7 @@
 package snb.projects.persistence.services.users
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import com.templates.persistence.repositories.AdminsRepository
 import io.quarkus.logging.Log
 import jakarta.enterprise.context.ApplicationScoped

@@ -1,7 +1,7 @@
 package snb.projects.domain.services
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.ports.`in`.VerifyAccountsIn
 import snb.projects.domain.ports.out.FindClientsOut
 import snb.projects.domain.ports.out.UpdateMeufsOut

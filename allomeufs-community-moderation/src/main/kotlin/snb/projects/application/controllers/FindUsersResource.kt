@@ -30,6 +30,6 @@ class FindUsersResource {
     @SecurityRequirement(name = "bearer")
     fun getMe() {
         val userMail = jwt.name
-        Log.debug(userMail)
+        Log.info(userMail)
     }
 }

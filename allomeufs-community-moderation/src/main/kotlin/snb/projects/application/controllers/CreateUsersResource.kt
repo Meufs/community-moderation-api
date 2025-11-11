@@ -53,14 +53,14 @@ class CreateUsersResource {
     @PermitAll
     @Operation(summary = "Create a meuf", description = "Create a meuf")
     @APIResponses(
-        APIResponse(responseCode = "200", description = "OK", content = [Content(mediaType = "application/json",
+        APIResponse(responseCode = "204", description = "OK", content = [Content(mediaType = "application/json",
             schema = Schema(implementation = CreateUserResponse::class)
         )]),
     )
     fun createClient(creationRequest: CreateUserRequest): Response {
         Log.info("Creating client")
         val mappedRequest = usersDtoMappers.fromCreationRequest(creationRequest)
-        Log.debug(String.format("Creating user %s %s", mappedRequest.firstName, mappedRequest.lastName))
+        Log.info(String.format("Creating user %s %s", mappedRequest.firstName, mappedRequest.lastName))
         val userCreationInformations = createUsersIn.createUser(mappedRequest)
         val bearerCookie = cookieUtils.setUpCookie("Bearer", userCreationInformations.jwToken)
         val csrfToken = csrfTokenGeneratorIn.generateToken(mappedRequest.mail)

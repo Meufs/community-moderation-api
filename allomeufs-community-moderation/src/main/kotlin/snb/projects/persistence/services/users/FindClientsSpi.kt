@@ -1,7 +1,7 @@
 package snb.projects.persistence.services.users
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.persistence.entities.MeufsEntity
 import snb.projects.persistence.repositories.ClientsRepository
 import jakarta.enterprise.context.ApplicationScoped

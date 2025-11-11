@@ -51,14 +51,14 @@ class DatasourceConfigurator(
                     .build()
             )
             .buildClient()
-        Log.debug("Retrieving secrets from Azure key vault")
+        Log.info("Retrieving secrets from Azure key vault")
         val url =
             secretClient.getSecret("DB-ENDPOINT").value + "/" + secretClient.getSecret(
                 "DB-NAME"
             ).value + "?currentSchema="  + secretClient.getSecret(
                 "DB-NAME"
             ).value
-        Log.debug("Secrets successfully retrieved")
+        Log.info("Secrets successfully retrieved")
         val dataSourceConfiguration = AgroalDataSourceConfigurationSupplier()
 
         val poolConfiguration = dataSourceConfiguration.connectionPoolConfiguration()
@@ -76,13 +76,12 @@ class DatasourceConfigurator(
             .transactionIntegration(txIntegration) //This part, specify transaction integration
 
         val connectionFactoryConfiguration = poolConfiguration.connectionFactoryConfiguration()
-        Log.debug("hihihihi")
         connectionFactoryConfiguration
             .jdbcUrl(String.format("jdbc:postgresql://%s", url))
             .credential(NamePrincipal((secretClient.getSecret("DB-USER").value)))
             .credential(SimplePassword((secretClient.getSecret("DB-PASSWORD").value)))
         try {
-            Log.debug("Building Datasource from secrets")
+            Log.info("Building Datasource from secrets")
             return AgroalDataSource.from(dataSourceConfiguration.get())
         } catch (ex: SQLException) {
             throw IllegalStateException(

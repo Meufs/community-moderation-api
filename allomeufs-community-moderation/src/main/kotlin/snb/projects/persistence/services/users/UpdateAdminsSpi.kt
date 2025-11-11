@@ -1,11 +1,10 @@
 package snb.projects.persistence.services.users
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import com.templates.persistence.repositories.AdminsRepository
 import io.quarkus.logging.Log
 import jakarta.enterprise.context.ApplicationScoped
-import jakarta.enterprise.inject.Default
 import jakarta.inject.Inject
 import jakarta.transaction.Transactional
 import snb.projects.domain.ports.out.UpdateAdminsOut
@@ -70,7 +69,7 @@ class UpdateAdminsSpi: UpdateAdminsOut {
     }
 
     private fun handleExceptions(e: SQLException) {
-        Log.debug(e.message)
+        Log.info(e.message)
         throw ApplicationException(ApplicationExceptionsEnum.ERROR)
     }
 

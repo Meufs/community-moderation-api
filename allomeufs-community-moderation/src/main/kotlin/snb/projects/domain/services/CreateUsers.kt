@@ -1,7 +1,7 @@
 package snb.projects.domain.services
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.models.commands.users.CreateUserCommand
 import snb.projects.domain.models.users.UserBasicInformations
 import snb.projects.domain.models.users.UserTypes
@@ -18,6 +18,7 @@ import snb.projects.domain.utils.UUIDGenerator.getNewUUID
 import io.quarkus.logging.Log
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
+import jakarta.transaction.Transactional
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import java.sql.Timestamp
 
@@ -37,14 +38,19 @@ class CreateUsers : CreateUsersIn {
     @field:ConfigProperty(name = "admin.code")
     private lateinit var adminCreationCode: String
 
+    @Transactional
     override fun createUser(user: CreateUserCommand): UserBasicInformations {
         Log.info("Creating user")
         val userType = UserTypes.MEUF.name
         val userReference = setUpUserDataAndCheckInputs(user, userType)
         val userToken = jwtTokenGenerator.getToken(user.mail,userType)
-        createUsersOut.addClient(user)
-        azureStorageIn.createContainerForUser(user.phoneNumber)
-        Log.info("OTP verification Mail sent to user")
+        try {
+            createUsersOut.addMeuf(user)
+            azureStorageIn.createContainerForUser(user.phoneNumber)
+        } catch (e: Exception) {
+            Log.info(e.toString())
+            throw ApplicationException(ApplicationExceptionsEnum.ERROR)
+        }
        return UserBasicInformations(userType, userReference, userToken, false)
     }
 
@@ -84,6 +90,7 @@ class CreateUsers : CreateUsersIn {
         user.reference = userReference
         if(user.type == UserTypes.MEUF.name){
             mailer.sendHtmlEmail(user.mail, "Vérification de compte", content)
+            Log.info("OTP verification Mail sent to user")
         }
 
         verifyCreateUserInputs(preHashPW, user)

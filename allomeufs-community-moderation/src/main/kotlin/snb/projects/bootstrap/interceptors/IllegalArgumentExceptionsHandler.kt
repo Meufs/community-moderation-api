@@ -12,7 +12,7 @@ import org.jboss.resteasy.reactive.RestResponse.StatusCode
 class IllegalArgumentExceptionsHandler : ExceptionMapper<IllegalArgumentException> {
     @Produces(MediaType.APPLICATION_JSON)
     override fun toResponse(e: IllegalArgumentException): Response {
-        Log.debug(e.toString())
+        Log.info(e.toString())
         return Response.status(Response.Status.fromStatusCode(StatusCode.BAD_REQUEST))
             .entity(e.toString()).build()
     }

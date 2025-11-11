@@ -1,7 +1,7 @@
 package snb.projects.persistence.services.users
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import com.templates.domain.ports.out.CreateUsersOut
 import com.templates.persistence.repositories.AdminsRepository
 import io.quarkus.logging.Log
@@ -31,7 +31,7 @@ class CreateUsersSpi : CreateUsersOut {
     @Inject
     private lateinit var usersEntityMapper: UsersEntityMapper
 
-    override fun addClient(user: CreateUserCommand) {
+    override fun addMeuf(user: CreateUserCommand) {
         val userEntity = usersEntityMapper.fromCreateUserToClient(user)
         try {
             Log.debug(userEntity.toString())
@@ -67,6 +67,7 @@ class CreateUsersSpi : CreateUsersOut {
                 throw ApplicationException(ApplicationExceptionsEnum.CREATE_USER_DUPLICATE_REFERENCE)
             }
             else -> {
+                Log.debug(e.toString())
                 throw ApplicationException(ApplicationExceptionsEnum.ERROR)
             }
         }

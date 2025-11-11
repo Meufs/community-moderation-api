@@ -1,7 +1,7 @@
 package com.templates.domain.utils
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.domain.services.PasswordUtils.verifyPassword
 import java.sql.Timestamp
 import kotlin.math.abs

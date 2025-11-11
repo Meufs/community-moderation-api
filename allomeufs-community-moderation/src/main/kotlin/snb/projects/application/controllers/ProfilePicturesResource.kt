@@ -2,7 +2,7 @@ package snb.projects.application.controllers
 
 import snb.projects.application.dto.responses.UpdateProfilePictureResponse
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import jakarta.annotation.security.RolesAllowed
 import jakarta.enterprise.context.RequestScoped
 import jakarta.inject.Inject

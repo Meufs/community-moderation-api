@@ -3,7 +3,7 @@ package snb.projects
 import com.fasterxml.jackson.databind.ObjectMapper
 import snb.projects.application.controllers.CookieUtils
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import io.quarkus.test.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured

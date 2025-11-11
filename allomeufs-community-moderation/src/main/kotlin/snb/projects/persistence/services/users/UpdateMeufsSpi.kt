@@ -1,7 +1,7 @@
 package snb.projects.persistence.services.users
 
 import com.templates.domain.errors.ApplicationException
-import com.templates.domain.errors.ApplicationExceptionsEnum
+import snb.projects.domain.errors.ApplicationExceptionsEnum
 import snb.projects.persistence.repositories.ClientsRepository
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
@@ -25,7 +25,7 @@ class UpdateMeufsSpi: UpdateMeufsOut {
                 "mail" to mail,
                 "profilePictureUrl" to profilePictureUrl
             ))
-            Log.debug(String.format("User %s profile picture was updated", mail))
+            Log.info(String.format("User %s profile picture was updated", mail))
         } catch (e: SQLException) {
             handleExceptions(e)
         }
@@ -37,7 +37,7 @@ class UpdateMeufsSpi: UpdateMeufsOut {
             clientsRepository.update("accountVerifiedStatus = true WHERE mail =:mail",  mapOf(
                 "mail" to mail
             ))
-            Log.debug(String.format("User %s was approved", mail))
+            Log.info(String.format("User %s was approved", mail))
         } catch (e: SQLException) {
             handleExceptions(e)
         }
@@ -53,7 +53,7 @@ class UpdateMeufsSpi: UpdateMeufsOut {
                     "newTimestamp" to newOtpTimestamp,
                     "mail" to mail
                 ))
-            Log.debug(String.format("User %s verification code updated", mail))
+            Log.info(String.format("User %s verification code updated", mail))
         } catch (e: SQLException) {
             handleExceptions(e)
         }
@@ -77,7 +77,7 @@ class UpdateMeufsSpi: UpdateMeufsOut {
                     "newTimestamp" to passwordVerificationTimestamp,
                     "mail" to identifier
                 ))
-            Log.debug(String.format("User %s verification code updated", identifier))
+            Log.info(String.format("User %s identifier updated", identifier))
         } catch (e: SQLException) {
             handleExceptions(e)
         }
@@ -90,7 +90,7 @@ class UpdateMeufsSpi: UpdateMeufsOut {
                     "newPassword" to newPassword,
                     "mail" to identifier
                 ))
-            Log.debug(String.format("User %s verification code updated", identifier))
+            Log.info(String.format("User %s password updated", identifier))
         } catch (e: SQLException) {
             handleExceptions(e)
         }
